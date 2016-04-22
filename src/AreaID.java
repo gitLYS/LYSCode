@@ -43,7 +43,7 @@ public class AreaID {
 			int rsRows =readSheet.getRows();
 			
 			for(int i=0;i<rsRows;i++){
-				Cell cell=readSheet.getCell(4,i);
+				Cell cell=readSheet.getCell(6,i);
 				arrayList.add(cell.getContents());
 				//System.out.println(cell.getContents()+" ");
 			}

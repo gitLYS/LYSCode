@@ -105,8 +105,6 @@ public class GetWeatherForcast {
         
         //准备写入文本文件
         FileWriter fileWriter=new FileWriter(file,true);
-        System.out.println(response);
-        
         for(int i=0;i<forecast.length;i++){
         	fileWriter.write(citycode1+","+cityname+","+publishTime+","+currentTemp+","+forecast[i].getDate()
     				+","+forecast[i].getFengli()+","+forecast[i].getFengxiang()+","+forecast[i].getHightemp()
