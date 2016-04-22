@@ -46,6 +46,8 @@ public class GetWaterEnvironment {
 		{
 		clientResource.release();
 		}
+		
+		try{
 		FileWriter fileWriter=new FileWriter(file,true);
 		WaterEnvironment waterEnvironment=gson.fromJson(response, WaterEnvironment.class);
 		WaterEnvironmentInfo[] waterEnvironmentInfo=waterEnvironment.getInfo();
@@ -72,6 +74,9 @@ public class GetWaterEnvironment {
 					+","+waterEnvironmentInfo[i].getWeek()+"\n");
 		}
 	fileWriter.close();
+		}catch(Exception e){
+			e.printStackTrace();
+		}
 		return response;
 		}
 	

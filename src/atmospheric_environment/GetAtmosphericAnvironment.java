@@ -29,6 +29,7 @@ public class GetAtmosphericAnvironment {
 	clientResource.release();
 	}
 	
+	try{
 	FileWriter fileWriter=new FileWriter(file,true);
 	Gson gson=new Gson();
 	AtmosphericEnvironment atmosphericEnvironment=gson.fromJson(response, AtmosphericEnvironment.class);
@@ -43,6 +44,9 @@ public class GetAtmosphericAnvironment {
 				+","+info[i].getLatitude()+","+info[i].getO3_24h()+","+info[i].getO3_8h_24h()+","+info[i].getO3_8h()+"\n");
 	}
 	fileWriter.close();
+	}catch(Exception e){
+		e.printStackTrace();
+	}
 	
 	return response;
 	}   

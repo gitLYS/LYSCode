@@ -90,6 +90,7 @@ public class GetWeatherForcast {
             clientResource.release();
         }
  
+        try{
         //json转化
         Gson gson=new Gson();
         WeatherForecast weatherJson=gson.fromJson(response, WeatherForecast.class);
@@ -104,14 +105,18 @@ public class GetWeatherForcast {
         
         //准备写入文本文件
         FileWriter fileWriter=new FileWriter(file,true);
+        System.out.println(response);
         
-        
-        for(int i=0;i<4;i++){
+        for(int i=0;i<forecast.length;i++){
         	fileWriter.write(citycode1+","+cityname+","+publishTime+","+currentTemp+","+forecast[i].getDate()
     				+","+forecast[i].getFengli()+","+forecast[i].getFengxiang()+","+forecast[i].getHightemp()
     				+","+forecast[i].getLowtemp()+","+forecast[i].getType()+","+forecast[i].getWeek()+"\n");
         }
+        
         fileWriter.close();
+        }catch(Exception e){
+        	e.printStackTrace();
+        }
         
        /* for(int i=0;i<=4;i++)
         	//这段代码看起来有点烦，事实上是为了解决输入文本文件之后列数据没对整齐的情况！

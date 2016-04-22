@@ -34,4 +34,25 @@ public class AreaID {
 		return arrayList;
 	}
 	
+	public ArrayList<String> getCityname()  {
+		Workbook readwb;
+		try {
+			readwb=Workbook.getWorkbook(new File("areaid.xls"));
+			
+			Sheet readSheet=readwb.getSheet(0);
+			int rsRows =readSheet.getRows();
+			
+			for(int i=0;i<rsRows;i++){
+				Cell cell=readSheet.getCell(4,i);
+				arrayList.add(cell.getContents());
+				//System.out.println(cell.getContents()+" ");
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			
+		}
+		return arrayList;
+	}
+	
 }

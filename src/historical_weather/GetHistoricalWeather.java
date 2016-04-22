@@ -62,20 +62,22 @@ public class GetHistoricalWeather {
         {
             clientResource.release();
         }
-           
+           try{
         Gson gson=new Gson();
         HistoricalWeather historicalWeather=gson.fromJson(response, HistoricalWeather.class);
         HistoricalWeatherInfo info=historicalWeather.getInfo();
         Details[] details =info.getDetails();
         FileWriter fileWriter=new FileWriter(file,true);
-        for(int i=0;i<=3;i++){
+        for(int i=0;i<details.length;i++){
         	fileWriter.write(info.getCitycode()+","+details[i].getUpdatetime()+","+details[i].getWeekofday()
         			+","+details[i].getPhenomena()+","+details[i].getTemperature()+","+details[i].getFeelst()
         			+","+details[i].getHumidity()+","+details[i].getRain()+","+details[i].getAirpressure()
         			+","+details[i].getWinddirect()+","+details[i].getWindpower()+","+details[i].getWindspeed()+"\n");
         }
         fileWriter.close();
-        
+           }catch(Exception e){
+        	   e.printStackTrace();
+           }
        
         //fileWriter.write(info.getCitycode());
        

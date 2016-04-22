@@ -45,6 +45,7 @@ public class GetEarthquake {
 	            clientResource.release();
 	        }
 	         
+	        try{
 	        Earthquake earthquake=gson.fromJson(response, Earthquake.class);
 	        EarthquakeInfo earthquakeInfo=earthquake.getInfo();
 	        FileWriter fileWriter=new FileWriter(file,true);
@@ -63,7 +64,9 @@ public class GetEarthquake {
 	        +","+earthquakeInfo.getLongitude()+","+earthquakeInfo.getLatitude()+","+earthquakeInfo.getPlace()
 	        +","+earthquakeInfo.getDepth()+","+earthquakeInfo.getType()+","+earthquakeInfo.getNet()+","+earthquakeInfo.getTsunami()+"\n");
 	        fileWriter.close();
-	        
+	        }catch(Exception e){
+	        	e.printStackTrace();
+	        }
 	        
 	        
 	        

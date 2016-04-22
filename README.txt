@@ -1,2 +1,5 @@
-air_quality包还有错误
-water_environment还没有写完
+
+查询台风
+mateorological_disaster这个包里的类是用来查询台风的，但是那个查询年份只能输入2012！！别的都是错误的
+
+污染物种类比较少所以直接在Main类里面定义成数组

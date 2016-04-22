@@ -52,17 +52,19 @@ public class GetLiveWeather {
             clientResource.release();
         }
          
+        try{
         FileWriter fileWriter=new FileWriter(file,true);
         Gson gson=new Gson();
         LiveWeather liveWeather=gson.fromJson(response, LiveWeather.class);
         LiveWeatherInfo liveWeatherInfo=liveWeather.getInfo();
-        
-     
-
+ 
         fileWriter.write(liveWeatherInfo.getCitycode()+","+liveWeatherInfo.getWindspeed()+","+liveWeatherInfo.getPhenomena()
         +","+liveWeatherInfo.getAirpressure()+","+liveWeatherInfo.getHumidity()+","+liveWeatherInfo.getUpdatetime()
         +","+liveWeatherInfo.getWindpower()+","+liveWeatherInfo.getFeelst()+","+liveWeatherInfo.getWinddirect()
         +","+liveWeatherInfo.getWeekofday()+","+liveWeatherInfo.getRain()+","+liveWeatherInfo.getTemperature()+"\n");
        fileWriter.close();
+        }catch(Exception e){
+        	e.printStackTrace();
+        }
     }
 }

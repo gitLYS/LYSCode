@@ -34,7 +34,28 @@ finally
 {
 clientResource.release();
 }
-System.out.println(response);
+
+try{
+	Gson gson=new Gson();
+	AirQuality airQuality=gson.fromJson(response, AirQuality.class);
+	AirQualityInfo airQualityInfo=airQuality.getInfo();
+	AirQualityForecast[] airQualityForecast=airQualityInfo.getForecast();
+    FileWriter fileWriter=new FileWriter(file,true);
+	
+	for(int i=0;i<airQualityForecast.length;i++){
+		fileWriter.write(airQualityInfo.getCitycode()+","+airQualityInfo.getCityName()+","+airQualityInfo.getPublishdate()
+		+","+airQualityForecast[i].getNo2_max()+","+airQualityForecast[i].getO3_8h_max()
+		+","+airQualityForecast[i].getNo2_min()+","+airQualityForecast[i].getAqi_avg()
+		+","+airQualityForecast[i].getO3_min()+","+airQualityForecast[i].getDate()+","+airQualityForecast[i].getCo_max()
+		+","+airQualityForecast[i].getO3_max()+","+airQualityForecast[i].getCo_min()+","+airQualityForecast[i].getPm10_max()
+		+","+airQualityForecast[i].getSo2_max()+","+airQualityForecast[i].getSo2_min()
+		+","+airQualityForecast[i].getPm25_min()+","+airQualityForecast[i].getPm25_max()
+		+","+airQualityForecast[i].getO3_8h_min()+","+airQualityForecast[i].getPm10_min()+"\n");
+	}
+	fileWriter.close();
+}catch(Exception e){
+	e.printStackTrace();
+}
 return response;
 }
 }
